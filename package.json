@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "dev:debug": "DEBUG=server-cmd:* npm run dev"
+    "dev:debug": "DEBUG=server-cmd:* npm run dev",
+    "lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -18,6 +19,13 @@
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-import-resolver-node": "^0.3.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-react": "^7.0.0",
+    "nodemon": "^1.11.0",
+    "stylelint": "^7.10.1",
+    "stylelint-config-standard": "^16.0.0"
   }
 }
