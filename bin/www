@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../app.babel.js');
 var debug = require('debug')('server-cmd:server');
 var http = require('http');
 
