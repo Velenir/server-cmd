@@ -1,9 +1,15 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+const router = express.Router();
+
+const React = require("react");
+import {renderToString} from "react-dom/server";
+import Main from "../components/Main";
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function(req, res) {
+	// res.render('index', { title: 'Express' });
+	const rendered = renderToString(<Main/>);
+	res.render("index", {title: "Express", rendered});
 });
 
-module.exports = router;
+export default router;
