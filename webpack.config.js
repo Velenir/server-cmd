@@ -1,9 +1,6 @@
 const webpack = require('webpack');
 
-module.exports = {
-	entry: {
-		app: __dirname + '/client'
-	},
+const common = {
 	output: {
 		path: __dirname + '/public',
 		filename: 'js/[name].js',
@@ -13,23 +10,36 @@ module.exports = {
 		extensions: ['.js', '.jsx']
 	},
 	module: {
-		rules: [
-			{
-				test: /\.jsx?$/,
-				include: [__dirname + '/client', __dirname + '/components'],
-				
-				loader: 'babel-loader',
-				
-				options: {
-					cacheDirectory: true
-				}
+		rules: [{
+			test: /\.jsx?$/,
+			include: [__dirname + '/client', __dirname + '/components'],
+			
+			loader: 'babel-loader',
+			
+			options: {
+				cacheDirectory: true
 			}
-		]
+		}]
 	},
-	devtool: 'source-map',
-	plugins: [
-		// new webpack.DefinePlugin({
-		// 	'process.env.NODE_ENV': JSON.stringify('production')
-		// })
-	]
+	devtool: 'source-map'
+};
+
+module.exports = function(env) {
+	return Object.assign({}, common, env === "production" ?
+	{
+		entry: {app: __dirname + '/client'},
+		plugins: [
+			new webpack.DefinePlugin({
+				'process.env.NODE_ENV': JSON.stringify('production')
+			})
+		]
+	} :
+	{
+		entry: {app: [__dirname + '/client', 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000']},
+		plugins: [
+			new webpack.HotModuleReplacementPlugin(),
+			new webpack.NoEmitOnErrorsPlugin()
+		]
+	}
+);
 };

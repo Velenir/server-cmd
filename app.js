@@ -6,12 +6,6 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import sassMiddleware from 'node-sass-middleware';
 
-import webpack from 'webpack';
-import webpackConfig from './webpack.config';
-const compiler = webpack(webpackConfig);
-
-import webpackDevMiddleware from 'webpack-dev-middleware';
-
 import index from './routes/index';
 import users from './routes/users';
 
@@ -34,7 +28,20 @@ app.use(sassMiddleware({
 	sourceMap: true
 }));
 
-app.use(webpackDevMiddleware(compiler, {publicPath: '/'}));
+
+// in production assets are compiled by webpack in prestart
+if(process.env.NODE_ENV !== "production") {
+	const webpack = require('webpack');
+	const webpackConfig = require('./webpack.config')(process.env.NODE_ENV);
+	const compiler = webpack(webpackConfig);
+
+	const webpackDevMiddleware = require('webpack-dev-middleware');
+
+	app.use(webpackDevMiddleware(compiler, {publicPath: '/'}));
+	app.use(require("webpack-hot-middleware")(compiler, {
+		log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
+	}));
+}
 
 
 app.use(express.static(path.join(__dirname, 'public')));

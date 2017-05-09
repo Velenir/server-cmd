@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "dev:debug": "DEBUG=server-cmd:* npm run dev",
-    "compile": "webpack",
+    "compile": "webpack --env production",
     "prestart": "npm run compile",
     "lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache"
   },
@@ -36,6 +36,7 @@
     "nodemon": "^1.11.0",
     "stylelint": "^7.10.1",
     "stylelint-config-standard": "^16.0.0",
-    "webpack-dev-middleware": "^1.10.2"
+    "webpack-dev-middleware": "^1.10.2",
+    "webpack-hot-middleware": "^2.18.0"
   }
 }
