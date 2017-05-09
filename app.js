@@ -37,7 +37,7 @@ if(process.env.NODE_ENV !== "production") {
 
 	const webpackDevMiddleware = require('webpack-dev-middleware');
 
-	app.use(webpackDevMiddleware(compiler, {publicPath: '/'}));
+	app.use(webpackDevMiddleware(compiler, {publicPath: '/', noInfo: true}));
 	app.use(require("webpack-hot-middleware")(compiler, {
 		log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
 	}));
