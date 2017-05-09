@@ -6,8 +6,8 @@
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "dev:debug": "DEBUG=server-cmd:* npm run dev",
-		"compile": "webpack",
-		"prestart": "npm run compile",
+    "compile": "webpack",
+    "prestart": "npm run compile",
     "lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache"
   },
   "dependencies": {

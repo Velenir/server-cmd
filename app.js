@@ -6,6 +6,12 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import sassMiddleware from 'node-sass-middleware';
 
+import webpack from 'webpack';
+import webpackConfig from './webpack.config';
+const compiler = webpack(webpackConfig);
+
+import webpackDevMiddleware from 'webpack-dev-middleware';
+
 import index from './routes/index';
 import users from './routes/users';
 
@@ -27,6 +33,10 @@ app.use(sassMiddleware({
 	indentedSyntax: false, // true = .sass and false = .scss
 	sourceMap: true
 }));
+
+app.use(webpackDevMiddleware(compiler, {publicPath: '/'}));
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
