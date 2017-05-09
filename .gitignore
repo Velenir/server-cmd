@@ -30,5 +30,6 @@ node_modules
 npm-debug.log
 
 # compiled stylesheets
-public/stylesheets/*.css
-public/stylesheets/*.css.map
+public/css/*.css
+public/css/*.css.map
+public/js
