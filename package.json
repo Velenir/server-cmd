@@ -6,6 +6,7 @@
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "dev:debug": "DEBUG=server-cmd:* npm run dev",
+		"compile": "webpack",
     "lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache"
   },
   "dependencies": {
@@ -22,7 +23,8 @@
     "pug": "~2.0.0-beta11",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "webpack": "^2.5.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -32,6 +34,7 @@
     "eslint-plugin-react": "^7.0.0",
     "nodemon": "^1.11.0",
     "stylelint": "^7.10.1",
-    "stylelint-config-standard": "^16.0.0"
+    "stylelint-config-standard": "^16.0.0",
+    "webpack-dev-middleware": "^1.10.2"
   }
 }

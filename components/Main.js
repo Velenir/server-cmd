@@ -2,7 +2,7 @@ import React from 'react';
  
 const Main = () => (
 	<div>
-		<h2 onClick={() => alert("Clicked!")}>Main react component</h2>
+		<h2>Main react <a onClick={(e) => (e.preventDefault(), alert("Clicked!"))} href="#">component</a></h2>
 	</div>
 );
 
