@@ -37,13 +37,15 @@ const history = Array(4).fill(sample);
 class View extends Component {
 	state = {history}
 	
-	sendInput = ({target}) => {
-		const formData = new FormData(target);
+	sendInput = ({target: form}) => {
+		const formData = new FormData(form);
 		const newCommand = {
 			cmd: formData.get("cmd"),
 			comment: formData.get("comment"),
 			status: "В процессе"
 		};
+		
+		form.reset();
 		
 		sendInput(formData).then(() => newCommand)
 		.catch((err) => {
