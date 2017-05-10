@@ -39,16 +39,26 @@ class View extends Component {
 	
 	sendInput = ({target}) => {
 		const formData = new FormData(target);
-		sendInput(formData);
 		const newCommand = {
 			cmd: formData.get("cmd"),
 			comment: formData.get("comment"),
 			status: "В процессе"
 		};
 		
-		this.setState({
-			history: [...this.state.history, newCommand]
+		sendInput(formData).then(() => newCommand)
+		.catch((err) => {
+			console.log(err);
+			return {
+				...newCommand,
+				status: "Ошибка",
+				error: err.statusText || err.message
+			};
+		}).then((cmd) => {
+			this.setState({
+				history: [...this.state.history, cmd]
+			});
 		});
+		
 	}
 	
 	render() {

@@ -8,11 +8,11 @@ const fontClasses = {
  
 const Input = ({history}) => (
 	<div className="well output-panel clearfix">
-		{history.map(({cmd, print, comment, status}, i) => (
+		{history.map(({cmd, print, comment, status, error}, i) => (
 			<div key={i} className="list-group clearfix output-panel__item">
 				<div className="panel panel-default col-lg-9 col-sm-7 output-panel__history">
 					<div className="panel-heading output-panel__cmd">
-						{status && <i className={"output-panel__item__status " + fontClasses[status]} aria-hidden="true" title={status}/>} {cmd}
+						{status && <i className={"output-panel__item__status " + fontClasses[status]} aria-hidden="true" title={error || status}/>} {cmd}
 					</div>
 					<div className="panel-body output-panel__print">
 						{print}
