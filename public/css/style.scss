@@ -6,3 +6,38 @@ body {
 a {
 	color: #00B7FF;
 }
+
+.input-panel {
+	margin: 2rem;
+
+	&__controls {
+		/* display: flex;
+		align-items: center; */
+
+		&--cmd {
+			
+		}
+
+		&--comment {
+			
+		}
+	}
+
+	&__label {
+		/* margin: 0 1em;
+		min-width: 15ch; */
+	}
+
+	&__text {
+		/* width: auto;
+		flex: 1; */
+	}
+
+	&__textarea {
+		resize: vertical;
+	}
+
+	&__btn {
+		
+	}
+}
