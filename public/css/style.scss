@@ -41,3 +41,36 @@ a {
 		
 	}
 }
+
+.view {
+	/* padding: 1em; */
+}
+
+.output-panel {
+	background-color: #f5eeee;
+	padding: 0;
+
+	&__item {
+		margin-bottom: 0;
+		border-bottom: 2px solid #ddd;
+	}
+
+	&__history {
+		padding: 0;
+		font-family: monospace;
+		white-space: pre;
+		margin-bottom: 0;
+		border-radius: 0;
+		border-top: 0;
+		border-bottom: 0;
+		border-right: 0;
+	}
+
+	&__print {
+		overflow: auto;
+	}
+
+	&__comment {
+		padding: 10px 20px;
+	}
+}
