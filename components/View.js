@@ -4,7 +4,7 @@ import {Route, Redirect, Switch} from "react-router-dom";
 import Input from "./Input";
 import Output from "./Output";
 
-import {sendInput} from "../helpers";
+import {sendInput, requestUpdate} from "../helpers";
 
 const sample = {
 	cmd: "ls -la",
@@ -61,12 +61,23 @@ class View extends Component {
 			});
 			this.props.gotUpdates();
 		});
+	}
+	
+	requestUpdate = (e) => {
+		e.preventDefault();
 		
+		requestUpdate().then(history => {
+			console.log("RECEIVED update", history);
+			// this.setState({history});
+		});
 	}
 	
 	render() {
 		return (
 			<div className="view">
+				<a href="#" onClick={this.requestUpdate} className="view__update">
+					<i className="fa fa-refresh" aria-hidden="true"/>
+				</a>
 				<Switch>
 					{/* <Route path="/" exact render={() => <h2>Home</h2>}/> */}
 					{/* <Redirect from="/" to="/input"/> */}

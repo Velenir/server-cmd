@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import FetchTest from "./FetchTest";
 import Navigation from "./Navigation";
 import View from "./View";
 
@@ -22,7 +21,6 @@ class Main extends Component {
 	render() {
 		return (
 			<div className="app col-lg-offset-1 col-lg-10">
-				<FetchTest/>
 				<Navigation updatesAvailable={this.state.updatesAvailable}/>
 				<View gotUpdates={this.gotUpdates} clearedUpdates={this.clearedUpdates}/>
 			</div>

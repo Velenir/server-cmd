@@ -17,8 +17,10 @@ class Output extends Component {
 	render() {
 		return (
 			<div className="well output-panel clearfix">
-				<a href="#" className="output-panel__scroll-to-bottom" onClick={(e) => (e.preventDefault(), document.body.scrollTop = document.body.scrollHeight)}>
-					<i className="fa fa-arrow-down"/>
+				<a href="#" className="output-panel__scroll-to-bottom"
+					onClick={(e) => (e.preventDefault(), document.body.scrollTop = document.body.scrollHeight)}
+					title="В конец страницы">
+					<i className="fa fa-arrow-down" aria-hidden="true"/>
 				</a>
 				{this.props.history.map(({cmd, print, comment, status, error}, i) => (
 					<div key={i} className="list-group clearfix output-panel__item">

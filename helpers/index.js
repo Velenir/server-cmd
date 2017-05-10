@@ -14,3 +14,17 @@ export function sendInput(formData) {
 		});
 	});
 }
+
+export function requestUpdate() {
+	console.log("requesting update");
+	return fetch("/cmd").then(res => {
+		if(res.ok) {
+			return res.json();
+		}
+		
+		return Promise.reject({
+			status: res.status,
+			statusText: res.statusText
+		});
+	});
+}

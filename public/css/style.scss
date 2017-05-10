@@ -44,6 +44,12 @@ a {
 
 .view {
 	/* padding: 1em; */
+	&__update {
+		position: fixed;
+		top: 3rem;
+		left: 5rem;
+		font-size: 2em;
+	}
 }
 
 .output-panel {
