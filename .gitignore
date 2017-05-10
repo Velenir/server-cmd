@@ -32,4 +32,5 @@ npm-debug.log
 # compiled stylesheets
 public/css/*.css
 public/css/*.css.map
+!public/css/bootstrap.*.css
 public/js
