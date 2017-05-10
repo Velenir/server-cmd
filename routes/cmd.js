@@ -3,7 +3,11 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+	console.log("RECEIVED query", req.query);
+	res.json({
+		query: req.query,
+		q: req.query.q
+	});
 });
 
 export default router;

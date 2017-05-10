@@ -1,5 +1,6 @@
 import React from 'react';
 import {Route, Link, Redirect, Switch} from "react-router-dom";
+import FetchTest from "./FetchTest";
  
 const Main = () => (
 	<div>
@@ -9,6 +10,7 @@ const Main = () => (
 			<li><Link to="/output">output</Link></li>
 		</ul>
 		<h2>Main react <a onClick={(e) => (e.preventDefault(), alert("Clicked!"))} href="#">component</a></h2>
+		<FetchTest/>
 		<Switch>
 			{/* <Route path="/" exact render={() => <h2>Home</h2>}/> */}
 			{/* <Redirect from="/" to="/input"/> */}

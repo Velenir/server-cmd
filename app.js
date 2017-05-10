@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import sassMiddleware from 'node-sass-middleware';
 
 import index from './routes/index';
-import users from './routes/users';
+import cmd from './routes/cmd';
 
 var app = express();
 
@@ -47,7 +47,7 @@ if(process.env.NODE_ENV !== "production") {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/cmd', cmd);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
