@@ -5,8 +5,8 @@ import View from "./View";
  
 const Main = () => (
 	<div className="app">
-		<Navigation/>
 		<FetchTest/>
+		<Navigation/>		
 		<View/>
 	</div>
 );

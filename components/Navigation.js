@@ -1,12 +1,16 @@
-import React from 'react';
-import {Link} from "react-router-dom";
- 
-const Navigation = () => (
-	<ul className="navigation">
-		<li><Link to="/">Home</Link></li>
-		<li><Link to="/input">input</Link></li>
-		<li><Link to="/output">output</Link></li>
-	</ul>
-);
+import React, {Component} from 'react';
+import NavListLink from "./NavListLink";
+
+class Navigation extends Component {
+	render() {
+		return (
+			<ul className="navigation nav nav-tabs nav-justified">
+				<NavListLink exact to="/">Home</NavListLink>
+				<NavListLink to="/input">input</NavListLink>
+				<NavListLink to="/output">output</NavListLink>
+			</ul>
+		);
+	}
+}
 
 export default Navigation;
