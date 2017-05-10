@@ -96,3 +96,10 @@ a {
 		padding: 10px 20px;
 	}
 }
+
+.navigation {
+	&__new {
+		position: absolute;
+		right: 2ch;
+	}
+}

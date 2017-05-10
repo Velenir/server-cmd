@@ -7,7 +7,7 @@ class Navigation extends Component {
 			<ul className="navigation nav nav-tabs nav-justified">
 				<NavListLink exact to="/">Home</NavListLink>
 				<NavListLink to="/input">input</NavListLink>
-				<NavListLink to="/output">output</NavListLink>
+				<NavListLink to="/output">output {this.props.updatesAvailable && <span className="badge navigation__new">new</span>}</NavListLink>
 			</ul>
 		);
 	}

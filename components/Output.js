@@ -7,6 +7,13 @@ const fontClasses = {
 };
 
 class Output extends Component {
+	componentDidMount() {
+		console.log("Output MOUNTED");
+		this.props.clearedUpdates();
+	}
+	componentDidUpdate() {
+		console.log("Output UPDATED");
+	}
 	render() {
 		return (
 			<div className="well output-panel clearfix">

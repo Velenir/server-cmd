@@ -59,6 +59,7 @@ class View extends Component {
 			this.setState({
 				history: [...this.state.history, cmd]
 			});
+			this.props.gotUpdates();
 		});
 		
 	}
@@ -70,7 +71,7 @@ class View extends Component {
 					{/* <Route path="/" exact render={() => <h2>Home</h2>}/> */}
 					{/* <Redirect from="/" to="/input"/> */}
 					<Route path="/input" render={() => <Input sendInput={this.sendInput}/>}/>
-					<Route path="/output" render={() => <Output history={this.state.history}/>}/>
+					<Route path="/output" render={() => <Output history={this.state.history} {...this.props}/>}/>
 				</Switch>
 			</div>
 		);
