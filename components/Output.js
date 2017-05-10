@@ -22,7 +22,7 @@ const generatePrint = ({cmd, print, comment, status, error, start, end}, i) => (
 				{cmd}
 			</div>
 			<div className="panel-body output-panel__print">
-				{print}
+				{error || print}
 			</div>
 		</div>
 		<p className="col-lg-3 col-sm-5 output-panel__comment">
