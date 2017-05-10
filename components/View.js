@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Redirect, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 
 import Input from "./Input";
 import Output from "./Output";
@@ -7,38 +7,15 @@ import UpdateButton from "./UpdateButton";
 
 import {sendInput, requestUpdate} from "../helpers";
 
-const sample = {
-	cmd: "ls -la",
-	comment: "выводит список файлов в директории",
-	status: "Завершено",
-	start: Date.now(),
-	end: Date.now()+2000,
-	print: `total 100
-drwxr-xr-x  10 velenir velenir  4096 May 10 12:47 .
-drwxr-xr-x   7 velenir velenir  4096 May 10 11:12 ..
--rw-r--r--   1 velenir velenir   132 May 10 12:52 app.babel.js
--rw-r--r--   1 velenir velenir  1981 May 10 00:28 app.js
--rw-r--r--   1 velenir velenir   105 May 10 12:52 .babelrc
-drwxr-xr-x   2 velenir velenir  4096 May  8 23:26 bin
-drwxr-xr-x   2 velenir velenir  4096 May  9 00:44 client
-drwxr-xr-x   2 velenir velenir  4096 May 10 12:22 components
--rw-r--r--   1 velenir velenir  1082 May  8 22:53 .eslintrc
-drwxr-xr-x   8 velenir velenir  4096 May 10 14:08 .git
--rw-r--r--   1 velenir velenir   617 May 10 12:56 .gitignore
-drwxr-xr-x 685 velenir velenir 28672 May 10 12:47 node_modules
--rw-r--r--   1 velenir velenir  1383 May 10 12:47 package.json
-drwxr-xr-x   5 velenir velenir  4096 May  9 11:58 public
-drwxr-xr-x   2 velenir velenir  4096 May 10 00:28 routes
--rw-r--r--   1 velenir velenir   496 Feb 27 22:27 .stylelintrc
-drwxr-xr-x   2 velenir velenir  4096 May  9 10:16 views
--rw-r--r--   1 velenir velenir   900 May  9 16:52 webpack.config.js
-`
-};
-
-const history = Array(4).fill(sample);
-
 class View extends Component {
-	state = {history, interval: false}
+	state = {cmdHistory: this.props.cmdHistory || [], interval: true}
+	
+	componentDidMount() {
+		if(this.state.interval) {
+			const interval = setInterval(this.requestUpdate, 1000);
+			this.setState({interval});
+		}
+	}
 	
 	sendInput = ({target: form}) => {
 		const formData = new FormData(form);
@@ -60,16 +37,22 @@ class View extends Component {
 				};
 			}).then((cmd) => {
 				this.setState({
-					history: [...this.state.history, cmd]
+					cmdHistory: [...this.state.cmdHistory, cmd]
 				});
 				this.props.gotUpdates();
 			});
 	}
 	
 	requestUpdate = () => {
-		requestUpdate().then(history => {
-			console.log("RECEIVED update", history);
-			// this.setState({history});
+		requestUpdate().then(newHistory => {
+			console.log("RECEIVED update", newHistory, typeof newHistory);
+			const {cmdHistory, cmdHistory: {length}} = this.state;
+			if(newHistory.length !== length
+				|| (length && cmdHistory[length-1].start !== newHistory[length-1].start))
+			{
+				this.props.gotUpdates();
+			}
+			this.setState({cmdHistory: newHistory});
 		});
 	}
 	
@@ -97,7 +80,7 @@ class View extends Component {
 					{/* <Route path="/" exact render={() => <h2>Home</h2>}/> */}
 					{/* <Redirect from="/" to="/input"/> */}
 					<Route path="/input" render={() => <Input sendInput={this.sendInput}/>}/>
-					<Route path="/output" render={() => <Output history={this.state.history} {...this.props}/>}/>
+					<Route path="/output" render={() => <Output cmdHistory={this.state.cmdHistory} clearedUpdates={this.props.clearedUpdates}/>}/>
 				</Switch>
 			</div>
 		);

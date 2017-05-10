@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
 const fontClasses = {
 	"В процессе": "fa fa-spinner fa-spin",
@@ -12,7 +12,7 @@ const generatePrint = ({cmd, print, comment, status, error, start, end}, i) => (
 	<div key={i} className="list-group clearfix output-panel__item">
 		<div className="panel panel-default col-lg-9 col-sm-7 output-panel__history">
 			<div className="panel-heading output-panel__cmd">
-				{status && <i className={"output-panel__item__status " + fontClasses[status]} aria-hidden="true" title={error || status}/>}
+				{status && <i className={"output-panel__item__status " + fontClasses[status]} aria-hidden="true" title={status}/>}
 				<span className="output-panel__item__time">
 					<i className="fa fa-clock-o" aria-hidden="true"/>
 					{start && formatDate(start)}
@@ -31,13 +31,14 @@ const generatePrint = ({cmd, print, comment, status, error, start, end}, i) => (
 	</div>
 );
 
-class Output extends Component {
+class Output extends PureComponent {
 	componentDidMount() {
 		console.log("Output MOUNTED");
 		this.props.clearedUpdates();
 	}
 	componentDidUpdate() {
 		console.log("Output UPDATED");
+		this.props.clearedUpdates();
 	}
 	render() {
 		return (
@@ -47,7 +48,7 @@ class Output extends Component {
 					title="В конец страницы">
 					<i className="fa fa-arrow-down" aria-hidden="true"/>
 				</a>
-				{this.props.history.map(generatePrint)}
+				{this.props.cmdHistory.map(generatePrint)}
 			</div>
 		);
 	}

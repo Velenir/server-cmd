@@ -3,34 +3,35 @@ var router = express.Router();
 
 import {exec} from 'child_process';
 
+const history = [];
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-	console.log("RECEIVED query", req.query);
-	res.json({
-		query: req.query,
-		q: req.query.q
-	});
+	console.log("SENDING history");
+	res.json(history);
 });
 
 router.post('/', function(req, res, next) {
 	console.log("RECEIVED form", req.form);
 	
-	res.json({
-		form: req.form,
+	const cmdToRun = {
 		cmd: req.form.cmd,
 		comment: req.form.comment,
 		status: "В процессе",
 		start: Date.now()
-	});
+	};
 	
-	if(req.form.cmd) runCmd(req.form.cmd, (error, stdout, stderr) => {
-		// res.json({
-		// 	form: req.form,
-		// 	cmd: req.form.cmd,
-		// 	comment: req.form.comment,
-		// 	error,
-		// 	print: stderr || stdout
-		// });
+	res.json(cmdToRun);
+	
+	if(cmdToRun.cmd) runCmd(cmdToRun.cmd, (error, stdout, stderr) => {
+		console.log(typeof error);
+		history.push({
+			...cmdToRun,
+			error: error && error.message,
+			print: stderr || stdout,
+			end: Date.now(),
+			status: error ? "Ошибка" : "Завершено"
+		});
 	});
 });
 
