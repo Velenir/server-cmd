@@ -6,6 +6,31 @@ const fontClasses = {
 	"Ошибка": "fa fa-exclamation-triangle"
 };
 
+const formatDate = mls => new Date(mls).toLocaleTimeString("ru-RU");
+
+const generatePrint = ({cmd, print, comment, status, error, start, end}, i) => (
+	<div key={i} className="list-group clearfix output-panel__item">
+		<div className="panel panel-default col-lg-9 col-sm-7 output-panel__history">
+			<div className="panel-heading output-panel__cmd">
+				{status && <i className={"output-panel__item__status " + fontClasses[status]} aria-hidden="true" title={error || status}/>}
+				<span className="output-panel__item__time">
+					<i className="fa fa-clock-o" aria-hidden="true"/>
+					{start && formatDate(start)}
+					{start && end && " -- "}
+					{end && formatDate(end)}
+				</span>
+				{cmd}
+			</div>
+			<div className="panel-body output-panel__print">
+				{print}
+			</div>
+		</div>
+		<p className="col-lg-3 col-sm-5 output-panel__comment">
+			{comment}
+		</p>
+	</div>
+);
+
 class Output extends Component {
 	componentDidMount() {
 		console.log("Output MOUNTED");
@@ -22,21 +47,7 @@ class Output extends Component {
 					title="В конец страницы">
 					<i className="fa fa-arrow-down" aria-hidden="true"/>
 				</a>
-				{this.props.history.map(({cmd, print, comment, status, error}, i) => (
-					<div key={i} className="list-group clearfix output-panel__item">
-						<div className="panel panel-default col-lg-9 col-sm-7 output-panel__history">
-							<div className="panel-heading output-panel__cmd">
-								{status && <i className={"output-panel__item__status " + fontClasses[status]} aria-hidden="true" title={error || status}/>} {cmd}
-							</div>
-							<div className="panel-body output-panel__print">
-								{print}
-							</div>
-						</div>
-						<p className="col-lg-3 col-sm-5 output-panel__comment">
-							{comment}
-						</p>
-					</div>
-				))}
+				{this.props.history.map(generatePrint)}
 			</div>
 		);
 	}

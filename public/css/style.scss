@@ -8,7 +8,8 @@ a {
 }
 
 .input-panel {
-	margin: 2rem;
+	max-width: 650px;
+	margin: 9rem auto;
 
 	&__controls {
 		/* display: flex;
@@ -100,6 +101,14 @@ a {
 			right: 100%;
 			margin: 0 5px;
 			font-size: 2em;
+		}
+
+		&__time {
+			float: right;
+
+			i {
+				margin: 0 4px;
+			}
 		}
 	}
 

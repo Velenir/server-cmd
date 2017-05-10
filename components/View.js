@@ -11,6 +11,8 @@ const sample = {
 	cmd: "ls -la",
 	comment: "выводит список файлов в директории",
 	status: "Завершено",
+	start: Date.now(),
+	end: Date.now()+2000,
 	print: `total 100
 drwxr-xr-x  10 velenir velenir  4096 May 10 12:47 .
 drwxr-xr-x   7 velenir velenir  4096 May 10 11:12 ..
