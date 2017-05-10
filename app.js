@@ -4,6 +4,7 @@ import path from 'path';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import formdata from 'formdata-parser';
 import sassMiddleware from 'node-sass-middleware';
 
 import index from './routes/index';
@@ -20,6 +21,7 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(formdata());
 app.use(cookieParser());
 app.use(sassMiddleware({
 	src: path.join(__dirname, 'public'),

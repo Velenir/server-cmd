@@ -10,4 +10,13 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+router.post('/', function(req, res, next) {
+	console.log("RECEIVED form", req.form);
+	res.json({
+		form: req.form,
+		cmd: req.form.cmd,
+		comment: req.form.comment
+	});
+});
+
 export default router;
