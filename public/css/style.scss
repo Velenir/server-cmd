@@ -53,6 +53,11 @@ a {
 	&__item {
 		margin-bottom: 0;
 		border-bottom: 2px solid #ddd;
+
+		&__status {
+			position: absolute;
+			right: 100%;
+		}
 	}
 
 	&__history {

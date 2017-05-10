@@ -7,9 +7,19 @@ import Output from "./Output";
 import {sendInput} from "../helpers";
 
 class View extends Component {
-	sendInput({target}) {
+	state = {}
+	
+	sendInput = ({target}) => {
 		const formData = new FormData(target);
 		sendInput(formData);
+		
+		this.setState({
+			newCommand: {
+				cmd: formData.get("cmd"),
+				comment: formData.get("comment"),
+				status: "В процессе"
+			}
+		});
 	}
 	
 	render() {
@@ -19,7 +29,7 @@ class View extends Component {
 					{/* <Route path="/" exact render={() => <h2>Home</h2>}/> */}
 					{/* <Redirect from="/" to="/input"/> */}
 					<Route path="/input" render={() => <Input sendInput={this.sendInput}/>}/>
-					<Route path="/output" component={Output}/>
+					<Route path="/output" render={() => <Output {...this.state}/>}/>
 				</Switch>
 			</div>
 		);
