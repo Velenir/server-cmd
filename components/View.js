@@ -3,6 +3,7 @@ import {Route, Redirect, Switch} from "react-router-dom";
 
 import Input from "./Input";
 import Output from "./Output";
+import UpdateButton from "./UpdateButton";
 
 import {sendInput, requestUpdate} from "../helpers";
 
@@ -35,7 +36,7 @@ drwxr-xr-x   2 velenir velenir  4096 May  9 10:16 views
 const history = Array(4).fill(sample);
 
 class View extends Component {
-	state = {history}
+	state = {history, interval: false}
 	
 	sendInput = ({target: form}) => {
 		const formData = new FormData(form);
@@ -63,21 +64,33 @@ class View extends Component {
 		});
 	}
 	
-	requestUpdate = (e) => {
-		e.preventDefault();
-		
+	requestUpdate = () => {
 		requestUpdate().then(history => {
 			console.log("RECEIVED update", history);
 			// this.setState({history});
 		});
 	}
 	
+	automaticUpdate = ({target}) => {
+		console.log(target.checked);
+		if(target.checked) {
+			const interval = setInterval(this.requestUpdate, 1000);
+			this.setState({interval});
+			
+		} else {
+			clearInterval(this.state.interval);
+			this.setState({interval: false});
+		}
+	}
+	
+	componentWillUnmount() {
+		clearInterval(this.state.interval);
+	}
+	
 	render() {
 		return (
 			<div className="view">
-				<a href="#" onClick={this.requestUpdate} className="view__update">
-					<i className="fa fa-refresh" aria-hidden="true"/>
-				</a>
+				<UpdateButton requestUpdate={this.requestUpdate} automaticUpdate={this.automaticUpdate} interval={this.state.interval}/>
 				<Switch>
 					{/* <Route path="/" exact render={() => <h2>Home</h2>}/> */}
 					{/* <Redirect from="/" to="/input"/> */}

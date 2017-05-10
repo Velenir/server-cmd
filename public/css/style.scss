@@ -49,6 +49,26 @@ a {
 		top: 3rem;
 		left: 5rem;
 		font-size: 2em;
+
+		&__btn {
+			border: 1px solid #dadada;
+			border-radius: 4px;
+			width: 40px;
+			height: 40px;
+			display: inline-block;
+			text-align: center;
+
+			i {
+				vertical-align: middle;
+			}
+		}
+
+		&__interval {
+			margin-left: 10px;
+			vertical-align: middle;
+			color: #00b7ff;
+			cursor: pointer;
+		}
 	}
 }
 
