@@ -4,7 +4,7 @@ import React from 'react';
 const sample = {
 	cmd: "ls -la",
 	comment: "выводит список файлов в директории",
-	status: "Завешено",
+	status: "Завершено",
 	print: `total 100
 drwxr-xr-x  10 velenir velenir  4096 May 10 12:47 .
 drwxr-xr-x   7 velenir velenir  4096 May 10 11:12 ..
@@ -28,13 +28,22 @@ drwxr-xr-x   2 velenir velenir  4096 May  9 10:16 views
 };
 
 const history = Array(4).fill(sample);
+
+
+const fontClasses = {
+	"В процессе": "fa fa-spinner fa-spin",
+	"Завершено": "fa fa-check",
+	"Ошибка": "fa fa-exclamation-triangle"
+};
  
 const Input = ({newCommand = []}) => (
 	<div className="well output-panel clearfix">
 		{history.concat(newCommand).map(({cmd, print, comment, status}, i) => (
 			<div key={i} className="list-group clearfix output-panel__item">
 				<div className="panel panel-default col-lg-9 col-sm-7 output-panel__history">
-					<div className="panel-heading output-panel__cmd">{status && <span className="output-panel__item__status">{status}</span>} {cmd}</div>
+					<div className="panel-heading output-panel__cmd">
+						{status && <i className={"output-panel__item__status " + fontClasses[status]} aria-hidden="true" title={status}/>} {cmd}
+					</div>
 					<div className="panel-body output-panel__print">
 						{print}
 					</div>

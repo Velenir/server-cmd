@@ -56,7 +56,10 @@ a {
 
 		&__status {
 			position: absolute;
+			top: 0;
 			right: 100%;
+			margin: 0 5px;
+			font-size: 2em;
 		}
 	}
 
