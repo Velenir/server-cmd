@@ -6,7 +6,7 @@ const fontClasses = {
 	"Ошибка": "fa fa-exclamation-triangle"
 };
 
-const formatDate = mls => new Date(mls).toLocaleTimeString("ru-RU");
+const formatDate = mls => new Date(mls).toLocaleTimeString("ru-RU", {hour12: false});
 
 const generatePrint = ({cmd, print, comment, status, error, start, end, clientTime}, i) => (
 	<div key={i} className="list-group clearfix output-panel__item">

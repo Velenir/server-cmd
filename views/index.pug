@@ -5,3 +5,8 @@ block content
 	//- p Welcome to #{title}
 	
 	#app.mount-point!= rendered
+
+block prepend scripts
+	- console.log(preloadedHistory);
+	- console.log(JSON.stringify(preloadedHistory));
+	script window.__PRELOADED_HISTORY__ = !{JSON.stringify(preloadedHistory)}

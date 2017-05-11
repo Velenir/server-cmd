@@ -24,7 +24,7 @@ class Main extends Component {
 		return (
 			<div className="app col-lg-offset-1 col-lg-10">
 				<Navigation updatesAvailable={this.state.updatesAvailable}/>
-				<View gotUpdates={this.gotUpdates} clearedUpdates={this.clearedUpdates}/>
+				<View gotUpdates={this.gotUpdates} clearedUpdates={this.clearedUpdates} cmdHistory={this.props.cmdHistory}/>
 			</div>
 		);
 	}
