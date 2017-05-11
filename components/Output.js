@@ -39,6 +39,8 @@ class Output extends PureComponent {
 		this.props.clearedUpdates();
 	}
 	render() {
+		const {cmdHistory} = this.props;
+		
 		return (
 			<div className="well output-panel clearfix">
 				<a href="#" className="output-panel__scroll-to-bottom"
@@ -46,7 +48,7 @@ class Output extends PureComponent {
 					title="В конец страницы">
 					<i className="fa fa-arrow-down" aria-hidden="true"/>
 				</a>
-				{this.props.cmdHistory.map(generatePrint)}
+				{cmdHistory.length ? cmdHistory.map(generatePrint): <p className="output-panel__empty">Нет команд для отображения</p>}
 			</div>
 		);
 	}

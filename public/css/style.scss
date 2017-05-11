@@ -66,6 +66,12 @@ a {
 	padding: 0;
 	margin: 0;
 
+	&__empty {
+		text-align: center;
+		text-transform: uppercase;
+		padding: 1em;
+	}
+
 	&__scroll-to-bottom {
 		position: fixed;
 		top: 6rem;
