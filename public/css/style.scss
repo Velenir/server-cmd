@@ -3,12 +3,24 @@ body {
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+$link-color: #00B7FF;
+$scroll-to-bottom-color: #fff;
+$scroll-to-bottom-bckcolor: #dac6c6;
+$output-panel-bckcolor: #f5eeee;
+$update-bckcolor: rgba(240, 248, 255, 0.93);
+$interval-color: #00b7ff;
+
+$input-panel-max-width: 650px;
+$update-button-size: 40px;
+$scroll-to-bottom-size: 50px;
+$combined-output-max-height: 80vh;
+
 a {
-	color: #00B7FF;
+	color: $link-color;
 }
 
 .input-panel {
-	max-width: 650px;
+	max-width: $input-panel-max-width;
 	margin: 9rem auto;
 
 	&__textarea {
@@ -24,14 +36,14 @@ a {
 		left: 1rem;
 		font-size: 2em;
 		z-index: 999;
-		background-color: rgba(240, 248, 255, 0.93);
+		background-color: $update-bckcolor;
 		padding: 5px;
 
 		&__btn {
 			border: 1px solid #dadada;
 			border-radius: 4px;
-			width: 40px;
-			height: 40px;
+			width: $update-button-size;
+			height: $update-button-size;
 			display: inline-block;
 			text-align: center;
 
@@ -43,14 +55,14 @@ a {
 		&__interval {
 			margin-left: 10px;
 			vertical-align: middle;
-			color: #00b7ff;
+			color: $interval-color;
 			cursor: pointer;
 		}
 	}
 }
 
 .output-panel {
-	background-color: #f5eeee;
+	background-color: $output-panel-bckcolor;
 	padding: 0;
 	margin: 0;
 
@@ -61,11 +73,11 @@ a {
 		padding: 1rem;
 		text-align: center;
 		font-size: 2em;
-		background-color: #dac6c6;
-		color: #fff;
+		background-color: $scroll-to-bottom-bckcolor;
+		color: $scroll-to-bottom-color;
 		border-radius: 50%;
-		width: 50px;
-		height: 50px;
+		width: $scroll-to-bottom-size;
+		height: $scroll-to-bottom-size;
 	}
 
 	&__item {
@@ -117,11 +129,13 @@ a {
 }
 
 .combined-panel {
+	$dx: "2em + 5px";
+
 	&__output {
-		width: calc(100% + 2em + 5px);
-		margin-left: calc(-2em - 5px);
-		padding-left: calc(2em + 5px);
-		max-height: 80vh;
+		width: calc(100% + #{$dx});
+		margin-left: calc(-1 * (#{$dx}));
+		padding-left: calc(#{$dx});
+		max-height: $combined-output-max-height;
 		overflow: auto;
 	}
 
