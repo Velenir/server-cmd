@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www --ignore client/ --ignore components/ --ignore public/js/",
+    "dev": "nodemon ./bin/www --ignore client/ --ignore components/ --ignore public/js/ -e js,pug,scss",
     "dev:debug": "DEBUG=server-cmd:* npm run dev",
     "compile": "webpack --env production",
     "prestart": "npm run compile",
