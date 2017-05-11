@@ -44,7 +44,7 @@ class Output extends PureComponent {
 		return (
 			<div className="well output-panel clearfix">
 				{cmdHistory.length > 0 && <a href="#" className="output-panel__scroll-to-bottom"
-					onClick={(e) => (e.preventDefault(), document.body.scrollTop = document.body.scrollHeight)}
+					onClick={(e) => (e.preventDefault(), window.scrollTo(0,document.body.scrollHeight))}
 					title="В конец страницы">
 					<i className="fa fa-arrow-down" aria-hidden="true"/>
 				</a>}
