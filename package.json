@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=production node ./bin/www",
+    "start": "cross-env NODE_ENV=production node ./bin/www",
     "dev": "nodemon ./bin/www --ignore client/ --ignore components/ --ignore public/js/ -e js,pug,scss",
-    "dev:debug": "DEBUG=server-cmd:* npm run dev",
+    "dev:debug": "cross-env DEBUG=server-cmd:* npm run dev",
     "compile": "webpack --env production",
     "prestart": "npm run compile",
     "lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache"
