@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch, Redirect} from "react-router-dom";
 
 import Input from "./Input";
 import Output from "./Output";
@@ -78,10 +78,10 @@ class View extends Component {
 			<div className="view">
 				<UpdateButton requestUpdate={this.requestUpdate} automaticUpdate={this.automaticUpdate} interval={this.state.interval}/>
 				<Switch>
-					{/* <Redirect from="/" to="/input"/> */}
 					<Route path="/input" render={() => <Input sendInput={this.sendInput}/>}/>
 					<Route path="/output" render={() => <Output cmdHistory={this.state.cmdHistory} clearedUpdates={this.props.clearedUpdates}/>}/>
 					<Route path="/combined" render={() => <Combined sendInput={this.sendInput} cmdHistory={this.state.cmdHistory} clearedUpdates={this.props.clearedUpdates}/>}/>
+					<Redirect from="/" to="/output"/>
 				</Switch>
 			</div>
 		);
