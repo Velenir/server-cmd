@@ -11,6 +11,10 @@ import {history} from "./cmd";
 
 router.get(['/', '/input', '/output', '/combined'], function(req, res) {
 	
+	// undefined context gives a warning
+	// location allows to render matching Routes
+	// express middleware can sometimes change req.url
+	// better use req.originalUrl
 	const rendered = renderToString(
 		<StaticRouter context={{}} location={req.originalUrl}>
 			<Main cmdHistory={history}/>

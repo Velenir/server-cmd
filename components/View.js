@@ -29,7 +29,7 @@ class View extends Component {
 		
 		sendInput(formData)
 			.catch((err) => {
-				console.log(err);
+				console.error(err);
 				return {
 					...newCommand,
 					status: "Ошибка",
@@ -41,13 +41,12 @@ class View extends Component {
 				this.props.gotUpdates();
 				this.setState({
 					cmdHistory: [...this.state.cmdHistory, cmd]
-				});				
+				});
 			});
 	}
 	
 	requestUpdate = () => {
 		requestUpdate().then(newHistory => {
-			console.log("RECEIVED update", newHistory, typeof newHistory);
 			const {cmdHistory, cmdHistory: {length}} = this.state;
 			if(newHistory.length !== length
 				|| (length && cmdHistory[length-1].end !== newHistory[length-1].end))
@@ -60,7 +59,6 @@ class View extends Component {
 	}
 	
 	automaticUpdate = ({target}) => {
-		console.log(target.checked);
 		if(target.checked) {
 			const interval = setInterval(this.requestUpdate, 1000);
 			this.setState({interval});
@@ -80,7 +78,6 @@ class View extends Component {
 			<div className="view">
 				<UpdateButton requestUpdate={this.requestUpdate} automaticUpdate={this.automaticUpdate} interval={this.state.interval}/>
 				<Switch>
-					{/* <Route path="/" exact render={() => <h2>Home</h2>}/> */}
 					{/* <Redirect from="/" to="/input"/> */}
 					<Route path="/input" render={() => <Input sendInput={this.sendInput}/>}/>
 					<Route path="/output" render={() => <Output cmdHistory={this.state.cmdHistory} clearedUpdates={this.props.clearedUpdates}/>}/>

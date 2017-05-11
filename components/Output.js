@@ -33,11 +33,9 @@ const generatePrint = ({cmd, print, comment, status, error, start, end, clientTi
 
 class Output extends PureComponent {
 	componentDidMount() {
-		console.log("Output MOUNTED");
 		this.props.clearedUpdates();
 	}
 	componentDidUpdate() {
-		console.log("Output UPDATED");
 		this.props.clearedUpdates();
 	}
 	render() {

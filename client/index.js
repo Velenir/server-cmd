@@ -6,7 +6,6 @@ import Main from "../components/Main";
 
 /* eslint-disable no-underscore-dangle */
 // passed from render
-console.log(window.__PRELOADED_HISTORY__);
 const preloadedHistory = window.__PRELOADED_HISTORY__;
 // allow to garbage collect
 delete window.__PRELOADED_HISTORY__;

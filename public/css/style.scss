@@ -11,35 +11,8 @@ a {
 	max-width: 650px;
 	margin: 9rem auto;
 
-	&__controls {
-		/* display: flex;
-		align-items: center; */
-
-		&--cmd {
-			
-		}
-
-		&--comment {
-			
-		}
-	}
-
-	&__label {
-		/* margin: 0 1em;
-		min-width: 15ch; */
-	}
-
-	&__text {
-		/* width: auto;
-		flex: 1; */
-	}
-
 	&__textarea {
 		resize: vertical;
-	}
-
-	&__btn {
-		
 	}
 }
 

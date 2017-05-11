@@ -1,6 +1,6 @@
 import React from 'react';
  
-const Input = ({sendInput = ({target}) => console.log([...new FormData(target).values()])}) => (
+const Input = ({sendInput}) => (
 	<form className="form-horizontal input-panel" onSubmit={(e) => (e.preventDefault(), sendInput && sendInput(e))}>
 		<div className="form-group input-panel__controls input-panel__controls--cmd">
 			<label htmlFor="cmd" className="col-sm-2 control-label input-panel__label">Команда</label>
