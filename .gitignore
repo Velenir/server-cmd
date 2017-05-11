@@ -35,3 +35,6 @@ public/css/*.css.map
 !public/css/bootstrap.*.css
 !public/css/font-awesome.*.css
 public/js
+
+# Eslint cache
+.eslintcache
