@@ -9,7 +9,7 @@ import {StaticRouter} from "react-router";
 import Main from "../components/Main";
 
 /* GET home page. */
-router.get(['/', '/input', '/output'], function(req, res) {
+router.get(['/', '/input', '/output', '/combined'], function(req, res) {
 	const context = {};
 	
 	const rendered = renderToString(

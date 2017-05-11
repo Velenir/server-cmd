@@ -79,6 +79,7 @@ a {
 .output-panel {
 	background-color: #f5eeee;
 	padding: 0;
+	margin: 0;
 
 	&__scroll-to-bottom {
 		position: fixed;
@@ -139,5 +140,21 @@ a {
 	&__new {
 		position: absolute;
 		right: 2ch;
+	}
+}
+
+.combined-panel {
+	&__output {
+		width: calc(100% + 2em + 5px);
+		margin-left: calc(-2em - 5px);
+		padding-left: calc(2em + 5px);
+		max-height: 80vh;
+		overflow: auto;
+	}
+
+	&__input {
+		max-width: initial;
+		width: 100%;
+		margin: 0;
 	}
 }

@@ -7,12 +7,14 @@ class Main extends Component {
 	state = {updatesAvailable: false}
 	
 	gotUpdates = () => {
+		console.log("got updates");
 		this.setState({
 			updatesAvailable: true
 		});
 	}
 	
 	clearedUpdates = () => {
+		console.log("cleared updates");
 		this.setState({
 			updatesAvailable: false
 		});

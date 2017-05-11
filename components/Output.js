@@ -8,12 +8,12 @@ const fontClasses = {
 
 const formatDate = mls => new Date(mls).toLocaleTimeString("ru-RU");
 
-const generatePrint = ({cmd, print, comment, status, error, start, end}, i) => (
+const generatePrint = ({cmd, print, comment, status, error, start, end, clientTime}, i) => (
 	<div key={i} className="list-group clearfix output-panel__item">
 		<div className="panel panel-default col-lg-9 col-sm-7 output-panel__history">
 			<div className="panel-heading output-panel__cmd">
 				{status && <i className={"output-panel__item__status " + fontClasses[status]} aria-hidden="true" title={status}/>}
-				<span className="output-panel__item__time">
+				<span className="output-panel__item__time" title={clientTime ? "Время клиента" : "Время на сервере"}>
 					<i className="fa fa-clock-o" aria-hidden="true"/>
 					{start && formatDate(start)}
 					{start && end && " -- "}

@@ -3,12 +3,13 @@ import {Route, Switch} from "react-router-dom";
 
 import Input from "./Input";
 import Output from "./Output";
+import Combined from "./Combined";
 import UpdateButton from "./UpdateButton";
 
 import {sendInput, requestUpdate} from "../helpers";
 
 class View extends Component {
-	state = {cmdHistory: this.props.cmdHistory || [], interval: true}
+	state = {cmdHistory: this.props.cmdHistory || [], interval: false}
 	
 	componentDidMount() {
 		if(this.state.interval) {
@@ -33,13 +34,14 @@ class View extends Component {
 					...newCommand,
 					status: "Ошибка",
 					error: err.statusText || err.message,
-					start: Date.now()
+					start: Date.now(),
+					clientTime: true
 				};
 			}).then((cmd) => {
+				this.props.gotUpdates();
 				this.setState({
 					cmdHistory: [...this.state.cmdHistory, cmd]
-				});
-				this.props.gotUpdates();
+				});				
 			});
 	}
 	
@@ -48,11 +50,12 @@ class View extends Component {
 			console.log("RECEIVED update", newHistory, typeof newHistory);
 			const {cmdHistory, cmdHistory: {length}} = this.state;
 			if(newHistory.length !== length
-				|| (length && cmdHistory[length-1].start !== newHistory[length-1].start))
+				|| (length && cmdHistory[length-1].end !== newHistory[length-1].end))
 			{
 				this.props.gotUpdates();
+				this.setState({cmdHistory: newHistory});
 			}
-			this.setState({cmdHistory: newHistory});
+			
 		});
 	}
 	
@@ -81,6 +84,7 @@ class View extends Component {
 					{/* <Redirect from="/" to="/input"/> */}
 					<Route path="/input" render={() => <Input sendInput={this.sendInput}/>}/>
 					<Route path="/output" render={() => <Output cmdHistory={this.state.cmdHistory} clearedUpdates={this.props.clearedUpdates}/>}/>
+					<Route path="/combined" render={() => <Combined sendInput={this.sendInput} cmdHistory={this.state.cmdHistory} clearedUpdates={this.props.clearedUpdates}/>}/>
 				</Switch>
 			</div>
 		);
